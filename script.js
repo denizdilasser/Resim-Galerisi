@@ -108,27 +108,60 @@
 ];
 
 const galeri = document.getElementById("galeri");
+const carouselIcerik = document.getElementById("carousel-icerik");
+const carousel = document.querySelector("#carouselGaleri");
 
 resimler.forEach((resim, index) => {
-    const modalId = `modal${index}`;
-
-    galeri.innerHTML += `
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <img src="img/${resim.dosya}" alt="Fotoğraf" class="card-img-top img-fluid" data-bs-toggle="modal" data-bs-target="#${modalId}">
-      </div>
-    </div>
-
-    <div class="modal fade" id="${modalId}" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <img src="img/${resim.dosya}" class="img-fluid mb-3" alt="Büyük Fotoğraf">
-            <h5>${resim.konum}</h5>
-          </div>
-        </div>
-      </div>
+    
+    const kart = document.createElement("div");
+    kart.className = "col-md-3 mb-4";
+    kart.innerHTML = `
+    <div class="card h-100 scroll-anim">
+      <img src="img/${resim.dosya}" class="card-img-top img-fluid galeri-resim" alt="${resim.konum}" data-index="${index}" data-bs-toggle="modal" data-bs-target="#galeriModal">
+      <div class="card-body text-center"><small>${resim.konum}</small></div>
     </div>
   `;
+    galeri.appendChild(kart);
+
+   
+    const slayt = document.createElement("div");
+    slayt.className = `carousel-item${index === 0 ? " active" : ""}`;
+    slayt.innerHTML = `
+    <img src="img/${resim.dosya}" class="d-block w-100" alt="${resim.konum}">
+    <div class="carousel-caption d-none d-md-block">
+     <h5 class="text-uppercase fw-bold" style="letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
+  ${resim.konum}
+</h5>
+    </div>
+  `;
+    carouselIcerik.appendChild(slayt);
 });
 
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("galeri-resim")) {
+        const index = parseInt(e.target.getAttribute("data-index"));
+        const carouselInstance = bootstrap.Carousel.getInstance(carousel) || new bootstrap.Carousel(carousel);
+        carouselInstance.to(index);
+    }
+});
+
+const toggle = document.getElementById("themeToggle");
+const body = document.body;
+
+toggle.addEventListener("change", () => {
+    body.classList.toggle("dark-theme");
+});
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, {
+    threshold: 0.2
+});
+
+document.querySelectorAll('.scroll-anim').forEach(el => {
+    observer.observe(el);
+});
