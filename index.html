@@ -37,7 +37,7 @@
     </nav>
     <header class="py-5 text-center text-white" style="background: linear-gradient(to right, #4b6cb7, #182848);">
         <div class="container">
-            
+
             <p class="lead">Gittiğim yerlerden kareler, anılar ve harika manzaralar.</p>
         </div>
     </header>
@@ -55,7 +55,7 @@
                         <div class="modal-body p-0">
                             <div id="carouselGaleri" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner" id="carousel-icerik">
-                                   
+
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleri" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon"></span>
@@ -74,6 +74,23 @@
         </div>
     </div>
 
+    function updateCounter(current, total) {
+    imageCounter.textContent = ${current} / ${total};
+    }
+
+    document.addEventListener('keydown', function (e) {
+    const lightboxModal = document.getElementById('lightboxModal');
+    if (lightboxModal.classList.contains('show')) {
+    const carousel = new bootstrap.Carousel('#lightboxCarousel');
+    if (e.key === 'ArrowLeft') {
+    carousel.prev();
+    } else if (e.key === 'ArrowRight') {
+    carousel.next();
+    } else if (e.key === 'Escape') {
+    bootstrap.Modal.getInstance(lightboxModal).hide();
+    }
+    }
+    });
 
     <footer id="iletisim" class="bg-dark text-light text-center py-4 mt-5">
         <div class="container">

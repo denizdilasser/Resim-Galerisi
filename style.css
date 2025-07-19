@@ -4,7 +4,28 @@
     border: none;
     transition: transform 0.4s ease;
 }
+.gallery-img:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(15, 240, 252, 0.3), 0 0 15px rgba(150, 0, 255, 0.2);
+    filter: brightness(1.1);
+    border: 1px solid rgba(15, 240, 252, 0.5);
+}
 
+.gallery-item {
+    margin-bottom: 25px;
+    perspective: 1000px;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border: 1px solid rgba(15, 240, 252, 0.2);
+    box-shadow: 0 0 30px rgba(15, 240, 252, 0.2), 0 0 60px rgba(150, 0, 255, 0.1);
+}
+.root {
+    --neon-blue: #0ff0fc;
+    --neon-purple: #9600ff;
+    --dark-bg: #121212;
+}
     .card::before {
         content: '';
         position: absolute;

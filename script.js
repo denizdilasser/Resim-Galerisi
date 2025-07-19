@@ -117,7 +117,7 @@ resimler.forEach((resim, index) => {
     kart.className = "col-md-3 mb-4";
     kart.innerHTML = `
     <div class="card h-100 scroll-anim">
-      <img src="img/${resim.dosya}" class="card-img-top img-fluid galeri-resim" alt="${resim.konum}" data-index="${index}" data-bs-toggle="modal" data-bs-target="#galeriModal">
+      <img src="img/${resim.dosya}" class="gallery-img img-fluid galeri-resim" alt="${resim.konum}" data-index="${index}" data-bs-toggle="modal" data-bs-target="#galeriModal">
       <div class="card-body text-center"><small>${resim.konum}</small></div>
     </div>
   `;
@@ -127,7 +127,7 @@ resimler.forEach((resim, index) => {
     const slayt = document.createElement("div");
     slayt.className = `carousel-item${index === 0 ? " active" : ""}`;
     slayt.innerHTML = `
-    <img src="img/${resim.dosya}" class="d-block w-100" alt="${resim.konum}">
+    <img src="img/${resim.dosya}" class="gallery-img d-block w-100" alt="${resim.konum}">
     <div class="carousel-caption d-none d-md-block">
      <h5 class="text-uppercase fw-bold" style="letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
   ${resim.konum}
